@@ -207,20 +207,13 @@ function buildCard(entry, rootPrefix) {
     <article class="config-card" data-href="${escapeHtml(entry.importUrl)}" tabindex="0" role="link" aria-label="导入 ${escapeHtml(entry.displayName)}">
       <div class="card-topline">
         <span class="pill">${escapeHtml(entry.extensionLabel)}</span>
-        <span class="update-time">${escapeHtml(entry.updatedLabel)}</span>
+        <div class="card-timeblock">
+          <span class="update-time">${escapeHtml(entry.updatedLabel)}</span>
+          <span class="file-size">${escapeHtml(entry.sizeLabel)}</span>
+        </div>
       </div>
       <h2>${escapeHtml(entry.displayName)}</h2>
       <p class="summary">${escapeHtml(entry.summary)}</p>
-      <dl class="meta-list">
-        <div>
-          <dt>文件路径</dt>
-          <dd>${escapeHtml(entry.relativeConfigPath)}</dd>
-        </div>
-        <div>
-          <dt>文件大小</dt>
-          <dd>${escapeHtml(entry.sizeLabel)}</dd>
-        </div>
-      </dl>
       <div class="card-actions">
         <a class="primary-link" href="${escapeHtml(entry.importUrl)}">立即导入</a>
         <a class="secondary-link" href="${escapeHtml(`${rootPrefix}configs/${encodePath(entry.relativeConfigPath)}`)}" target="_blank" rel="noreferrer noopener">查看原文件</a>
@@ -612,9 +605,16 @@ code {
 
 .card-topline {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 0.75rem;
+}
+
+.card-timeblock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.22rem;
 }
 
 .pill {
@@ -636,6 +636,11 @@ code {
   color: var(--muted);
 }
 
+.file-size {
+  font-size: 0.72rem;
+  color: rgba(123, 91, 87, 0.76);
+}
+
 .config-card h2 {
   margin: 1rem 0 0;
   font-size: 1.3rem;
@@ -647,29 +652,6 @@ code {
   margin: 0.85rem 0 0;
   color: var(--muted);
   line-height: 1.7;
-}
-
-.meta-list {
-  display: grid;
-  gap: 0.7rem;
-  margin: 1rem 0 0;
-}
-
-.meta-list div {
-  padding: 0.85rem 0.95rem;
-  border-radius: 1rem;
-  background: rgba(184, 79, 79, 0.06);
-}
-
-.meta-list dt {
-  font-size: 0.78rem;
-  color: var(--muted);
-}
-
-.meta-list dd {
-  margin: 0.25rem 0 0;
-  line-height: 1.55;
-  word-break: break-all;
 }
 
 .card-actions {
