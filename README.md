@@ -18,6 +18,15 @@
 4. 特殊机制：如果掷出 `6` 点，可以额外再掷一次。如果棋子移动终点刚好有对方棋子，可以将对方撞回基地，可视规则设定开启或关闭。
 5. 胜利条件：率先将所有棋子移动到棋盘中心终点的玩家获胜。赢家通常可以获得输家提供的特别奖励，由双方自行约定。
 
+## 贡献方式
+
+> 欢迎提交配置文件
+
+1. 把新的配置文件上传到 `configs/`，例如 `configs/my-lovegame.txt` 或 `configs/my-lovegame.dat`
+2. 提交并推送到 GitHub
+3. GitHub Actions 会自动执行构建
+4. 构建完成后，GitHub Pages 页面会自动更新
+
 ## 常见问题
 
 ### 异地恋可以玩吗？
@@ -42,13 +51,6 @@
 - `scripts/generate-site.mjs`: 静态页面生成脚本
 - `.github/workflows/deploy-pages.yml`: 构建并发布 GitHub Pages
 - `qinglv.config.json`: 站点标题、分页数量、导入链接规则等配置
-
-## 使用方式
-
-1. 把新的配置文件上传到 `configs/`，例如 `configs/my-lovegame.txt` 或 `configs/my-lovegame.dat`
-2. 提交并推送到 GitHub
-3. GitHub Actions 会自动执行构建
-4. 构建完成后，GitHub Pages 页面会自动更新
 
 ## 可调配置
 
