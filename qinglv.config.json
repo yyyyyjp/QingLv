@@ -1,0 +1,9 @@
+{
+  "siteTitle": "情侣飞行棋",
+  "siteDescription": "情侣飞行棋配置文件仓库的分页索引页，按最近更新时间排序。",
+  "gameBaseUrl": "https://lovegame.hoothin.com/ludo",
+  "importParamMode": "filename",
+  "perPage": 12,
+  "locale": "zh-CN",
+  "timeZone": "Asia/Shanghai"
+}
