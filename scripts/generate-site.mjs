@@ -18,7 +18,7 @@ const configDir = join(projectDir, "configs");
 const outputDir = join(projectDir, "dist");
 const siteConfig = readJson(join(projectDir, "qinglv.config.json"));
 const perPage = normalizePerPage(siteConfig.perPage);
-const fileExtensionWhitelist = new Set([".txt"]);
+const fileExtensionWhitelist = new Set([".txt", ".dat"]);
 const locale = typeof siteConfig.locale === "string" ? siteConfig.locale : "zh-CN";
 const timeZone = typeof siteConfig.timeZone === "string" ? siteConfig.timeZone : "Asia/Shanghai";
 const importParamMode = siteConfig.importParamMode === "file-url" ? "file-url" : "filename";
@@ -88,6 +88,7 @@ function createConfigEntry(filePath) {
     relativePath,
     relativeConfigPath,
     displayName: prettifyName(relativeConfigPath),
+    extensionLabel: extname(relativeConfigPath).replace(".", "").toUpperCase(),
     importUrl: buildImportUrl(importValue),
     rawUrl: `./configs/${encodePath(relativeConfigPath)}`,
     updatedAt,
@@ -150,7 +151,7 @@ function buildPageHtml({ entries, currentPage, totalPages, totalCount }) {
     : `
       <section class="empty-state">
         <p class="empty-kicker">暂无配置</p>
-        <h2>把你的第一个 <code>.txt</code> 文件放进 <code>configs/</code></h2>
+        <h2>把你的第一个 <code>.txt</code> 或 <code>.dat</code> 文件放进 <code>configs/</code></h2>
         <p>推送到 GitHub 后，这里会自动生成新的可导入卡片。</p>
       </section>
     `;
@@ -205,7 +206,7 @@ function buildCard(entry, rootPrefix) {
   return `
     <article class="config-card" data-href="${escapeHtml(entry.importUrl)}" tabindex="0" role="link" aria-label="导入 ${escapeHtml(entry.displayName)}">
       <div class="card-topline">
-        <span class="pill">TXT</span>
+        <span class="pill">${escapeHtml(entry.extensionLabel)}</span>
         <span class="update-time">${escapeHtml(entry.updatedLabel)}</span>
       </div>
       <h2>${escapeHtml(entry.displayName)}</h2>
@@ -308,7 +309,7 @@ function encodePath(value) {
 }
 
 function prettifyName(relativeConfigPath) {
-  const cleanPath = relativeConfigPath.replace(/\.txt$/i, "");
+  const cleanPath = relativeConfigPath.replace(/\.(txt|dat)$/i, "");
   const segments = cleanPath.split("/");
   return segments[segments.length - 1].replace(/[-_]+/g, " ");
 }

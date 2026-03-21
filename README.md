@@ -1,8 +1,8 @@
 # [情侣飞行棋](https://lovegame.hoothin.com)
 
-这是 [lovegame.hoothin.com](https://lovegame.hoothin.com) 的配置文件仓库。
+这是 lovegame.hoothin.com 的[配置文件仓库](https://hoothin.github.io/QingLv)。
 
-`lovegame.hoothin.com` 是一个支持联机的情侣飞行棋网页游戏。本仓库用于存储情侣飞行棋的 `.txt` 配置文件，并通过 GitHub Actions 自动生成 GitHub Pages 页面，方便按时间排序浏览、分页查看和一键导入配置。
+`lovegame.hoothin.com` 是一个支持联机的情侣飞行棋网页游戏。本仓库用于存储情侣飞行棋的 `.txt` 和 `.dat` 配置文件，并通过 GitHub Actions 自动生成 GitHub Pages 页面，方便按时间排序浏览、分页查看和一键导入配置。
 
 ## 什么是情侣飞行棋？
 
@@ -28,7 +28,7 @@
 
 ## 仓库功能
 
-- 把 `.txt` 配置文件放进 `configs/` 后，GitHub Actions 会自动生成静态 HTML 页面
+- 把 `.txt` 或 `.dat` 配置文件放进 `configs/` 后，GitHub Actions 会自动生成静态 HTML 页面
 - 页面按配置文件最近一次提交时间倒序排列
 - 自动生成分页导航
 - 每个配置卡片都可以一键跳转到 `https://lovegame.hoothin.com/ludo?import=xxxxxx.txt`
@@ -43,7 +43,7 @@
 
 ## 使用方式
 
-1. 把新的配置文件上传到 `configs/`，例如 `configs/my-lovegame.txt`
+1. 把新的配置文件上传到 `configs/`，例如 `configs/my-lovegame.txt` 或 `configs/my-lovegame.dat`
 2. 提交并推送到 GitHub
 3. GitHub Actions 会自动执行构建
 4. 构建完成后，GitHub Pages 页面会自动更新
@@ -58,5 +58,5 @@
 
 `importParamMode` 支持：
 
-- `filename`: 跳转为 `?import=xxxxxx.txt`
-- `file-url`: 跳转为 `?import=https://你的页面地址/configs/xxxxxx.txt`
+- `filename`: 跳转为 `?import=xxxxxx.txt` 或 `?import=xxxxxx.dat`
+- `file-url`: 跳转为 `?import=https://你的页面地址/configs/xxxxxx.txt` 或 `?import=https://你的页面地址/configs/xxxxxx.dat`
