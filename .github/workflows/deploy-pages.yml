@@ -41,6 +41,9 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
+      - name: Test generator
+        run: npm test
+
       - name: Build static pages
         env:
           SITE_BASE_URL: ${{ steps.pages.outputs.base_url }}

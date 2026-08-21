@@ -2,7 +2,7 @@
 
 这是 lovegame.hoothin.com 的[配置文件仓库](https://hoothin.github.io/QingLv)。
 
-`lovegame.hoothin.com` 是一个支持联机的情侣飞行棋网页游戏。本仓库用于存储情侣飞行棋的 `.txt` 和 `.dat` 配置文件，并通过 GitHub Actions 自动生成 GitHub Pages 页面，方便按时间排序浏览、分页查看和一键导入配置。
+`lovegame.hoothin.com` 是一个支持联机的情侣飞行棋网页游戏。本仓库用于存储情侣飞行棋的 `.txt` 和 `.dat` 配置文件，并通过 GitHub Actions 自动生成 GitHub Pages 页面，方便按更新时间或名称排序浏览、分页查看和一键导入配置。
 
 ![情侣飞行棋游戏截图](./feixingqi.jpeg)
 
@@ -40,7 +40,9 @@
 ## 仓库功能
 
 - 把 `.txt` 或 `.dat` 配置文件放进 `configs/` 后，GitHub Actions 会自动生成静态 HTML 页面
-- 页面按配置文件最近一次提交时间倒序排列
+- 页面支持按最近更新、最早更新、名称升序和名称降序排列
+- 排序会先应用到全部配置，再生成当前分页，切换排序时自动返回第 1 页
+- 排序状态写入 `sort` 查询参数，刷新、分享链接和切换分页后都会保留
 - 自动生成分页导航
 - 每个配置卡片都可以一键跳转到 `https://lovegame.hoothin.com/ludo?import=xxxxxx.txt`
 - 同时保留配置文件原文件下载入口
@@ -64,3 +66,14 @@
 
 - `filename`: 跳转为 `?import=xxxxxx.txt` 或 `?import=xxxxxx.dat`
 - `file-url`: 跳转为 `?import=https://你的页面地址/configs/xxxxxx.txt` 或 `?import=https://你的页面地址/configs/xxxxxx.dat`
+
+## 页面排序参数
+
+排序选择器会使用以下 `sort` 查询参数：
+
+- `updated-desc`: 最近更新优先，也是未提供参数时的默认值
+- `updated-asc`: 最早更新优先
+- `name-asc`: 名称升序
+- `name-desc`: 名称降序
+
+例如，`https://hoothin.github.io/QingLv/?sort=name-asc` 会按名称升序展示全部配置。非法参数会安全回退到最近更新优先。
